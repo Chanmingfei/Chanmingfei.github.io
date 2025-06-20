@@ -1,0 +1,635 @@
+﻿<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>唐山师范学院吧 - 吧务组官网（非学校官方）</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0465bc',
+                        secondary: '#2575fc',
+                        accent: '#4c94ff',
+                        light: '#f0f4f8',
+                        dark: '#333333',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            }
+            .animate-fade-in {
+                animation: fadeIn 0.8s ease-out;
+            }
+            .animate-slide-up {
+                animation: slideUp 0.8s ease-out;
+            }
+            .animate-scale {
+                transition: transform 0.3s ease;
+            }
+            .animate-scale:hover {
+                transform: scale(1.05);
+            }
+            .bg-gradient-primary {
+                background: linear-gradient(135deg, #0465bc 0%, #2575fc 100%);
+            }
+            .nav-shadow {
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            }
+            .backdrop-blur {
+                backdrop-filter: blur(10px);
+            }
+            .glass-effect {
+                background: rgba(255, 255, 255, 0.7);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* 重新设计搜索框样式 */
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 9999px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            outline: none;
+            border-radius: 9999px;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #333333; /* 修改搜索框内文字颜色为深灰色 */
+        }
+
+        .search-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #2575fc;
+            color: white;
+            border: none;
+            outline: none;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-button:hover {
+            background-color: #0465bc;
+        }
+    </style>
+</head>
+
+<body class="font-inter bg-light text-dark">
+    <!-- 导航栏 -->
+    <nav id="mainNav" class="glass-effect fixed top-0 left-0 w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-between items-center py-3">
+                <div class="flex items-center space-x-3">
+                    <img src="https://s1.imagehub.cc/images/2025/05/04/0458fef2ac8d47bc88ee2151cf193573.jpg" alt="唐山师范学院吧" class="w-10 h-10 rounded-full border-2 border-primary">
+                    <a href="#" class="text-primary font-bold text-xl md:text-2xl">唐山师范学院吧</a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#quickLinks" class="text-gray-700 hover:text-primary font-medium transition-colors">快速链接</a>
+                    <a href="#team" class="text-gray-700 hover:text-primary font-medium transition-colors">吧务组公示</a>
+                    <a href="#social" class="text-gray-700 hover:text-primary font-medium transition-colors">关注我们</a>
+                    <a href="#feedbackSection" class="text-gray-700 hover:text-primary font-medium transition-colors">意见反馈</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menuBtn" class="text-gray-700 focus:outline-none">
+                        <i class="fa fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- 移动端菜单 -->
+        <div id="mobileMenu" class="md:hidden hidden glass-effect border-t nav-shadow">
+            <div class="container mx-auto px-4 py-2 space-y-3">
+                <a href="#quickLinks" class="block py-3 text-gray-700 hover:bg-gray-100 px-3 rounded-lg">快速链接</a>
+                <a href="#team" class="block py-3 text-gray-700 hover:bg-gray-100 px-3 rounded-lg">吧务组公示</a>
+                <a href="#social" class="block py-3 text-gray-700 hover:bg-gray-100 px-3 rounded-lg">关注我们</a>
+                <a href="#feedbackSection" class="block py-3 text-gray-700 hover:bg-gray-100 px-3 rounded-lg">意见反馈</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 头部 -->
+    <header class="pt-24 md:pt-28 bg-gradient-primary text-white shadow-lg relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <img src="https://s1.imagehub.cc/images/2025/05/04/46e0a76a0875740296805499009e7a4a.jpg" alt="背景" class="w-full h-full object-cover">
+        </div>
+        <div class="container mx-auto px-4 py-6 md:py-10 relative z-10">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center mb-6 md:mb-0">
+                    <img src="https://s1.imagehub.cc/images/2025/05/04/0458fef2ac8d47bc88ee2151cf193573.jpg" alt="唐山师范学院吧" class="w-20 h-20 rounded-full border-4 border-white shadow-lg animate-fade-in">
+                    <div class="ml-4">
+                        <h1 class="text-[clamp(1.8rem,5vw,2.5rem)] font-bold text-shadow animate-slide-up">唐山师范学院吧</h1>
+                        <p class="text-[clamp(1rem,3vw,1.2rem)] text-white/90 animate-slide-up" style="animation-delay: 0.2s">吧务组官网（非学校官方）</p>
+                    </div>
+                </div>
+                
+                <div class="w-full md:w-auto mt-0 animate-slide-up" style="animation-delay: 0.4s">
+                    <div class="search-container max-w-md mx-auto md:mx-0">
+                        <input type="text" placeholder="搜索你想要知道的..." class="search-input" id="searchInput">
+                        <button class="search-button" id="searchButton">
+                            <i class="fa fa-search text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 text-center animate-slide-up" style="animation-delay: 0.6s">
+                <p class="text-[clamp(1rem,2vw,1.2rem)] italic text-white/90" id="hitokoto">他是终日不化的冰山，遇见极圈不落的骄阳。</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="container mx-auto px-4 pt-12 pb-20">
+        <!-- 快速链接部分 -->
+        <section id="quickLinks" class="mb-16 animate-fade-in" style="animation-delay: 0.3s">
+            <div class="flex items-center mb-8">
+                <div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center mr-3">
+                    <i class="fa fa-link text-secondary"></i>
+                </div>
+                <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-primary">快速链接</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <a href="https://www.tstc.edu.cn" target="_blank" class="bg-white rounded-xl shadow-md p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <img src="https://icon.bqb.cool?url=https://www.tstc.edu.cn" alt="唐山师范学院" class="w-12 h-12 rounded-lg">
+                        <h3 class="ml-3 text-lg font-semibold text-primary">唐山师范学院</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">您所在的网页并非学校官方，这个才是唐山师范学院官方网站</p>
+                </a>
+
+                <a href="https://tieba.baidu.com/f?kw=%E5%94%90%E5%B1%B1%E5%B8%88%E8%8C%83%E5%AD%A6%E9%99%A2" target="_blank" class="bg-white rounded-xl shadow-md p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <img src="https://icon.bqb.cool?url=https://tieba.baidu.com" alt="唐山师范学院吧" class="w-12 h-12 rounded-lg">
+                        <h3 class="ml-3 text-lg font-semibold text-primary">唐山师范学院吧</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">唐山师范学院百度贴吧</p>
+                </a>
+
+                <a href="https://www.wjx.top/vm/wFv03EP.aspx#" target="_blank" class="bg-white rounded-xl shadow-md p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <img src="https://icon.bqb.cool?url=https://www.wjx.top" alt="邮箱申请" class="w-12 h-12 rounded-lg">
+                        <h3 class="ml-3 text-lg font-semibold text-primary">邮箱申请</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">吧务组免费向吧友提供自定义用户名、后缀为@tstc.pp.ua的邮箱</p>
+                </a>
+
+                <a href="https://qy.163.com/static/login/" target="_blank" class="bg-white rounded-xl shadow-md p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <img src="https://icon.bqb.cool?url=https://qy.163.com" alt="邮箱登录" class="w-12 h-12 rounded-lg">
+                        <h3 class="ml-3 text-lg font-semibold text-primary">邮箱登录</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">自定义邮箱登录 由网易企业邮箱提供服务</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- 吧务组人员公示部分 -->
+        <section id="team" class="mb-16 animate-fade-in" style="animation-delay: 0.5s">
+            <div class="flex items-center mb-8">
+                <div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center mr-3">
+                    <i class="fa fa-users text-secondary"></i>
+                </div>
+                <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-primary">吧务组人员公示</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <a href="https://tieba.baidu.com/home/main?id=tb.1.f732ecff.LjVmXUAOI9XIE0v0G6bM3Q&amp;fr=userbar" target="_blank" class="bg-white rounded-xl shadow-md p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/d3fc0fb24c9e4f0db0a738ff92259293~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1750997899&amp;x-signature=6UgTIrZSwZBr88wZYpW5tZeOJ%2BA%3D" alt="雨雪👀" class="w-12 h-12 rounded-lg">
+                        <h3 class="ml-3 text-lg font-semibold text-primary">雨雪👀</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">吧主 唐山师范学院在读 2025年5月当选</p>
+                </a>
+
+                <a href="https://tieba.baidu.com/home/main?id=tb.1.22841357._vT29AYL11XgG5fv1jvjCA" target="_blank" class="bg-white rounded-xl shadow-md p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/d3fc0fb24c9e4f0db0a738ff92259293~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1750997899&amp;x-signature=6UgTIrZSwZBr88wZYpW5tZeOJ%2BA%3D" alt="Duncan365" class="w-12 h-12 rounded-lg">
+                        <h3 class="ml-3 text-lg font-semibold text-primary">Duncan365</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">小吧主 唐山师范学院在读 2025年5月任命</p>
+                </a>
+
+                <a href="https://tieba.baidu.com/home/main?id=tb.1.ea2e8210.PNYITnnpR_owXac5m6qrog" target="_blank" class="bg-white rounded-xl shadow-md p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/d3fc0fb24c9e4f0db0a738ff92259293~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1750997899&amp;x-signature=6UgTIrZSwZBr88wZYpW5tZeOJ%2BA%3D" alt="总会有人把我照亮" class="w-12 h-12 rounded-lg">
+                        <h3 class="ml-3 text-lg font-semibold text-primary">总会有人把我照亮</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">小吧主 唐山师范学院在读 2025年5月任命</p>
+                </a>
+
+                <a href="https://tieba.baidu.com/home/main?id=tb.1.857b1127.2L6I6hnCD6zQiKkNNMCX_w" target="_blank" class="bg-white rounded-xl shadow-md p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/d3fc0fb24c9e4f0db0a738ff92259293~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1750997899&amp;x-signature=6UgTIrZSwZBr88wZYpW5tZeOJ%2BA%3D" alt="😅谢掉" class="w-12 h-12 rounded-lg">
+                        <h3 class="ml-3 text-lg font-semibold text-primary">😅谢掉</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">小吧主 唐山师范学院毕业 2025年5月任命</p>
+                </a>
+
+                <a href="https://tieba.baidu.com/home/main?id=tb.1.f39bd633.ZQsc9eixd4QVy6aNzBvIbA" target="_blank" class="bg-white rounded-xl shadow-md p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/d3fc0fb24c9e4f0db0a738ff92259293~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1750997899&amp;x-signature=6UgTIrZSwZBr88wZYpW5tZeOJ%2BA%3D" alt="净化啥也不是" class="w-12 h-12 rounded-lg">
+                        <h3 class="ml-3 text-lg font-semibold text-primary">净化啥也不是</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">小吧主 唐山师范学院在读 2025年5月任命</p>
+                </a>
+
+                <a href="https://tieba.baidu.com/home/main?id=tb.1.5d95abc4.LoHrePaaDNrhcneX04nrpg" target="_blank" class="bg-white rounded-xl shadow-md p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/d3fc0fb24c9e4f0db0a738ff92259293~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1750997899&amp;x-signature=6UgTIrZSwZBr88wZYpW5tZeOJ%2BA%3D" alt="前进的突击车-" class="w-12 h-12 rounded-lg">
+                        <h3 class="ml-3 text-lg font-semibold text-primary">前进的突击车-</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">小吧主 唐山师范学院在读 2025年5月任命</p>
+                </a>
+
+                <a href="https://tieba.baidu.com/home/main?id=tb.1.f01d0abb.a6TMABm7wu7oeHSzsYeChQ" target="_blank" class="bg-white rounded-xl shadow-md p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/d3fc0fb24c9e4f0db0a738ff92259293~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1750997899&amp;x-signature=6UgTIrZSwZBr88wZYpW5tZeOJ%2BA%3D" alt="黑⭐牛" class="w-12 h-12 rounded-lg">
+                        <h3 class="ml-3 text-lg font-semibold text-primary">黑⭐牛</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">小吧主 唐山师范学院在读 2025年5月任命</p>
+                </a>
+
+                <a href="https://tieba.baidu.com/home/main?id=tb.1.f87ff01d.HcXXN_fOvhQjTyvDikohoA" target="_blank" class="bg-white rounded-xl shadow-md p-6 card-hover">
+                    <div class="flex items-center mb-4">
+                        <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/d3fc0fb24c9e4f0db0a738ff92259293~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1750997899&amp;x-signature=6UgTIrZSwZBr88wZYpW5tZeOJ%2BA%3D" alt="登龙不开刃" class="w-12 h-12 rounded-lg">
+                        <h3 class="ml-3 text-lg font-semibold text-primary">登龙不开刃</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">小吧主 唐山师范学院毕业 2025年5月任命</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- 社交媒体链接部分 -->
+        <section id="social" class="mb-16 animate-fade-in" style="animation-delay: 0.7s">
+            <div class="flex items-center mb-8">
+                <div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center mr-3">
+                    <i class="fa fa-comments text-secondary"></i>
+                </div>
+                <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-primary">关注我们</h2>
+            </div>
+
+            <div class="text-center">
+                <p class="text-gray-600 mb-8">扫描下方二维码，关注我们的社交媒体账号</p>
+
+                <div class="flex flex-wrap justify-center gap-6">
+                    <button id="wechatBtn" class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full shadow-md flex items-center animate-scale">
+                        <i class="fa-brands fa-weixin text-2xl mr-2"></i>
+                        <span>微信公众号</span>
+                    </button>
+
+                    <button id="xiaohongshuBtn" class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-full shadow-md flex items-center animate-scale">
+                        <i class="fa-brands fa-instagram text-2xl mr-2"></i>
+                        <span>小红书</span>
+                    </button>
+
+                    <button id="qqBtn" class="bg-blue-400 hover:bg-blue-500 text-white px-6 py-3 rounded-full shadow-md flex items-center animate-scale">
+                        <i class="fa-brands fa-qq text-2xl mr-2"></i>
+                        <span>QQ迎新群</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 意见反馈部分 -->
+        <section id="feedbackSection" class="mb-16 animate-fade-in" style="animation-delay: 0.9s">
+            <div class="text-center">
+                <button id="feedbackBtn" class="bg-secondary hover:bg-primary text-white px-8 py-4 rounded-full shadow-lg flex items-center justify-center mx-auto animate-scale">
+                    <i class="fa fa-envelope mr-2"></i>
+                    <span>意见反馈</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-primary text-white py-10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-6 md:mb-0">
+                    <img src="https://s1.imagehub.cc/images/2025/05/04/0458fef2ac8d47bc88ee2151cf193573.jpg" alt="唐山师范学院吧" class="w-12 h-12 rounded-full border-2 border-white">
+                    <div class="ml-4">
+                        <h3 class="text-lg font-semibold">唐山师范学院吧</h3>
+                        <p class="text-sm text-white/80">吧务组官网（非学校官方）</p>
+                    </div>
+                </div>
+
+                <div class="text-center md:text-right">
+                    <p class="mb-2">吧主信箱</p>
+                    <a href="mailto:bazhu@tstc.pp.ua" class="text-white hover:underline flex items-center justify-center md:justify-end">
+                        <i class="fa fa-envelope mr-2"></i>
+                        <span>bazhu@tstc.pp.ua</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-white/20 text-center text-sm text-white/70">
+                <p>© 2025 唐山师范学院吧务组（非学校官方） 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 二维码弹窗 -->
+    <div id="qrModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full mx-4 transform scale-95 transition-transform duration-300">
+            <div class="p-6 border-b border-gray-200 flex justify-between items-center">
+                <h3 id="modalTitle" class="text-xl font-semibold text-primary"></h3>
+                <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fa fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-6 text-center">
+                <img id="qrImage" src="" alt="二维码" class="w-64 h-64 mx-auto mb-4 rounded-lg">
+                <p id="qrDesc" class="text-gray-600"></p>
+            </div>
+            <div class="p-4 bg-gray-50 rounded-b-xl">
+                <button id="saveQrBtn" class="bg-secondary hover:bg-primary text-white px-6 py-2 rounded-full shadow-sm">
+                    <i class="fa fa-download mr-2"></i>保存图片
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 意见反馈弹窗 -->
+    <div id="feedbackModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full mx-4 transform scale-95 transition-transform duration-300">
+            <div class="p-6 border-b border-gray-200 flex justify-between items-center">
+                <h3 class="text-xl font-semibold text-primary">意见反馈</h3>
+                <button id="closeFeedbackModal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fa fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-6 text-center">
+                <div class="mb-6">
+                    <i class="fa fa-envelope-open-text text-5xl text-primary mb-4"></i>
+                    <h4 class="text-lg font-semibold mb-2">吧主信箱</h4>
+                    <p class="text-gray-600 mb-4">欢迎通过以下邮箱联系我们</p>
+                    <a href="mailto:bazhu@tstc.pp.ua" class="inline-block bg-blue-50 text-blue-700 px-4 py-2 rounded-lg border border-blue-200 hover:bg-blue-100 transition-colors">
+                        <i class="fa fa-envelope mr-2"></i>bazhu@tstc.pp.ua
+                    </a>
+                </div>
+                <div class="border-t border-gray-200 pt-4">
+                    <p class="text-sm text-gray-500">我们会在3个工作日内回复您的邮件</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 导航栏滚动效果
+        const mainNav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                mainNav.classList.add('nav-shadow');
+            } else {
+                mainNav.classList.remove('nav-shadow');
+            }
+        });
+
+        // 移动端菜单
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (!mobileMenu.classList.contains('hidden')) {
+                menuBtn.innerHTML = '<i class="fa fa-times text-xl"></i>';
+            } else {
+                menuBtn.innerHTML = '<i class="fa fa-bars text-xl"></i>';
+            }
+        });
+
+        // 点击菜单项关闭菜单
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuBtn.innerHTML = '<i class="fa fa-bars text-xl"></i>';
+            });
+        });
+
+        // 一言功能
+        const hitokotoEl = document.getElementById('hitokoto');
+        if (hitokotoEl) {
+            fetch('https://v1.hitokoto.cn/?c=d')
+              .then(response => response.json())
+              .then(data => {
+                    hitokotoEl.textContent = data.hitokoto;
+                })
+              .catch(() => {
+                    // 默认文案
+                    const quotes = [
+                        '勤思笃学 修身律己',
+                        '学而不思则罔，思而不学则殆',
+                        '三人行，必有我师焉',
+                        '敏而好学，不耻下问',
+                        '学而不厌，诲人不倦'
+                    ];
+                    hitokotoEl.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+                });
+        }
+
+        // 二维码弹窗
+        const qrModal = document.getElementById('qrModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const qrImage = document.getElementById('qrImage');
+        const qrDesc = document.getElementById('qrDesc');
+        const saveQrBtn = document.getElementById('saveQrBtn');
+
+        // 社交媒体按钮
+        const wechatBtn = document.getElementById('wechatBtn');
+        const xiaohongshuBtn = document.getElementById('xiaohongshuBtn');
+        const qqBtn = document.getElementById('qqBtn');
+
+        // 社交媒体二维码数据
+        const socialMedia = {
+            wechat: {
+                title: '微信公众号',
+                image: 'https://s1.imagehub.cc/images/2025/06/20/ef716bfeb41938fafd3995220fd9cb8d.jpg', // 占位图，可替换为实际二维码
+                desc: '扫码关注唐山师范学院吧微信公众号'
+            },
+            xiaohongshu: {
+                title: '小红书',
+                image: 'https://s1.imagehub.cc/images/2025/06/20/90c6c918f3e512ae3d838c9ce3e6afc6.md.jpg', // 占位图，可替换为实际二维码
+                desc: '扫码关注唐山师范学院吧小红书账号'
+            },
+            qq: {
+                title: 'QQ迎新群',
+                image: 'https://s1.imagehub.cc/images/2025/06/20/9893542468a9a508411ae5056c56143d.md.jpg', // 占位图，可替换为实际二维码
+                desc: '扫码加入唐山师范学院吧QQ群'
+            }
+        };
+
+        // 打开二维码弹窗
+        function openQrModal(type) {
+            const data = socialMedia[type];
+            if (data) {
+                modalTitle.textContent = data.title;
+                qrImage.src = data.image;
+                qrDesc.textContent = data.desc;
+
+                // 显示弹窗并添加动画
+                qrModal.classList.remove('hidden');
+                setTimeout(() => {
+                    qrModal.classList.remove('opacity-0');
+                    qrModal.querySelector('div').classList.remove('scale-95');
+                    qrModal.querySelector('div').classList.add('scale-100');
+                }, 10);
+            }
+        }
+
+        // 关闭二维码弹窗
+        function closeQrModal() {
+            qrModal.classList.add('opacity-0');
+            qrModal.querySelector('div').classList.remove('scale-100');
+            qrModal.querySelector('div').classList.add('scale-95');
+            setTimeout(() => {
+                qrModal.classList.add('hidden');
+            }, 300);
+        }
+
+        // 按钮点击事件
+        wechatBtn.addEventListener('click', () => openQrModal('wechat'));
+        xiaohongshuBtn.addEventListener('click', () => openQrModal('xiaohongshu'));
+        qqBtn.addEventListener('click', () => openQrModal('qq'));
+        closeModal.addEventListener('click', closeQrModal);
+
+        // 点击弹窗外部关闭
+        qrModal.addEventListener('click', (e) => {
+            if (e.target === qrModal) {
+                closeQrModal();
+            }
+        });
+
+        // 保存二维码图片
+        saveQrBtn.addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.href = qrImage.src;
+            link.download = `${modalTitle.textContent}二维码.png`;
+            link.click();
+        });
+
+        // 意见反馈弹窗
+        const feedbackBtn = document.getElementById('feedbackBtn');
+        const feedbackModal = document.getElementById('feedbackModal');
+        const closeFeedbackModal = document.getElementById('closeFeedbackModal');
+
+        // 打开反馈弹窗
+        function openFeedbackModal() {
+            feedbackModal.classList.remove('hidden');
+            setTimeout(() => {
+                feedbackModal.classList.remove('opacity-0');
+                feedbackModal.querySelector('div').classList.remove('scale-95');
+                feedbackModal.querySelector('div').classList.add('scale-100');
+            }, 10);
+        }
+
+        // 关闭反馈弹窗
+        function closeFeedbackModalFunc() {
+            feedbackModal.classList.add('opacity-0');
+            feedbackModal.querySelector('div').classList.remove('scale-100');
+            feedbackModal.querySelector('div').classList.add('scale-95');
+            setTimeout(() => {
+                feedbackModal.classList.add('hidden');
+            }, 300);
+        }
+
+        // 反馈按钮点击事件
+        feedbackBtn.addEventListener('click', openFeedbackModal);
+        closeFeedbackModal.addEventListener('click', closeFeedbackModalFunc);
+
+        // 点击弹窗外部关闭
+        feedbackModal.addEventListener('click', (e) => {
+            if (e.target === feedbackModal) {
+                closeFeedbackModalFunc();
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 搜索功能
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+
+        function performSearch() {
+            const query = searchInput.value;
+            if (query) {
+                const searchUrl = `https://www.baidu.com/s?wd=${encodeURIComponent(query)}`;
+                window.open(searchUrl, '_blank');
+            }
+        }
+
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+    </script>
+
+
+
+
+</body></html>
